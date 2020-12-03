@@ -24,7 +24,18 @@ public class LegendOfTheFiveRingsRollerModel: ObservableObject {
     
     public func roll(amount: Int, keep: Int, bonus: Int, keepHigh: Bool = true) {
         let result = roller.rollDice(amount: amount, keep: keep, bonus: bonus, keepHigh: keepHigh)
-        
         coreDataService.createRoll(result: result)
+        rolls = coreDataService.getRolls() ?? []
     }
+
+    public func delete(roll: Roll) {
+        coreDataService.delete(roll)
+        rolls = coreDataService.getRolls() ?? []
+    }
+    
+    public func deleteAll() {
+        coreDataService.deleteAll()
+        rolls = coreDataService.getRolls() ?? []
+    }
+
 }
