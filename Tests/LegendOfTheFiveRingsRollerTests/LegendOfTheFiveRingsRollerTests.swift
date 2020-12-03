@@ -78,11 +78,11 @@ final class LegendOfTheFiveRingsRollerTests: XCTestCase {
     func testDeleteRolls() {
         let result = RollResult(original: (amount: 0, keep: 0, bonus: 0), bonus: 0, rolls: [], total: 0)
         let roll = coreDataService.createRoll(result: result)
-        coreDataService.createRoll(result: result)
-        coreDataService.createRoll(result: result)
-        coreDataService.createRoll(result: result)
+        for _ in 0..<1000 {
+            coreDataService.createRoll(result: result)
+        }
         coreDataService.delete(roll)
-        XCTAssertTrue(coreDataService.getRolls()?.count == 3)
+        XCTAssertTrue(coreDataService.getRolls()?.count == 1000)
         coreDataService.deleteAll()
         XCTAssertTrue(coreDataService.getRolls()?.count == 0)
     }

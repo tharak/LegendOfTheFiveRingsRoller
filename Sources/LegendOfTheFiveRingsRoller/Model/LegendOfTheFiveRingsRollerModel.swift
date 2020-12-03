@@ -22,8 +22,8 @@ public class LegendOfTheFiveRingsRollerModel: ObservableObject {
         rolls = coreDataService.getRolls() ?? []
     }
     
-    public func roll(amount: Int, keep: Int, bonus: Int, keepHigh: Bool = true) {
-        let result = roller.rollDice(amount: amount, keep: keep, bonus: bonus, keepHigh: keepHigh)
+    public func roll(amount: Int, keep: Int, bonus: Int, keepHigh: Bool = true, explodesOn: Int? = 10, rerollOnOne: Bool = false) {
+        let result = roller.rollDice(amount: amount, keep: keep, bonus: bonus, keepHigh: keepHigh, explodesOn: explodesOn, rerollOnOne: rerollOnOne)
         coreDataService.createRoll(result: result)
         rolls = coreDataService.getRolls() ?? []
     }

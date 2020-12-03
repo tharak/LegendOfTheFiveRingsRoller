@@ -13,12 +13,14 @@ public struct LegendOfTheFiveRingsRoller {
     let maximumDice = 10
     let bonusForMoreThanMaximumDice = 2
 
-    public func rollDice(amount: Int, keep: Int, bonus: Int, keepHigh: Bool = true) -> RollResult {
+    public func rollDice(amount: Int, keep: Int,
+                         bonus: Int, keepHigh: Bool = true,
+                         explodesOn: Int? = LegendOfTheFiveRingsRoller.dieSides,
+                         rerollOnOne: Bool = false) -> RollResult {
         let tenDiceRuled = applyTheTenDiceRule(amount: amount, keep: keep)
-
         var rolls: [Int] = []
         for _ in 0..<tenDiceRuled.amount {
-            rolls.append(rollDie())
+            rolls.append(rollDie(explodesOn: explodesOn, rerollOnOne: rerollOnOne))
         }
         keepHigh ? rolls.sort(by: >) : rolls.sort(by: <)
         let total = calculateTotal(rolls: rolls,

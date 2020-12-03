@@ -16,12 +16,14 @@ public class Roll: NSManagedObject {
     @NSManaged public var value: Int16
     @NSManaged public var order: Int16
 
+    static let entityName = String(describing: Roll.self)
+
     public class func fetchRequest() -> NSFetchRequest<Roll> {
-        return NSFetchRequest<Roll>(entityName: String(describing: Roll.self))
+        return NSFetchRequest<Roll>(entityName: entityName)
     }
 
     static let entity = CoreDataEntityDescription.entity(
-        name: String(describing: Roll.self),
+        name: entityName,
         managedObjectClass: Roll.self,
         attributes: [
             .attribute(name: "id", type: .UUIDAttributeType),
