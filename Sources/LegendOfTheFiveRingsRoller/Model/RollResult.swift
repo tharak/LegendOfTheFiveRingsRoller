@@ -6,8 +6,8 @@
 //
 
 public struct RollResult {
-    let original: (amount: Int, keep: Int, bonus: Int)
-    let bonus: Int
-    let rolls: [Int]
-    let total: Int
+    public let original: (amount: Int, keep: Int, bonus: Int)
+    public let bonus: Int
+    public let rolls: [Int]
+    public let total: Int
 }
