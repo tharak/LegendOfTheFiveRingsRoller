@@ -11,7 +11,7 @@ public class LegendOfTheFiveRingsRollerModel: ObservableObject {
 
     @Published public var rolls: [Roll]
     
-    public let roller = LegendOfTheFiveRingsRoller()
+    private let roller = LegendOfTheFiveRingsRoller()
     
     private var coreDataService: CoreDataService
     private var coreDataStack: CoreDataStack
@@ -22,10 +22,11 @@ public class LegendOfTheFiveRingsRollerModel: ObservableObject {
         rolls = coreDataService.getRolls() ?? []
     }
     
-    public func roll(amount: Int, keep: Int, bonus: Int, keepHigh: Bool = true, explodesOn: Int? = 10, rerollOnOne: Bool = false) {
+    public func roll(amount: Int, keep: Int, bonus: Int, keepHigh: Bool = true, explodesOn: Int? = 10, rerollOnOne: Bool = false) -> RollResult {
         let result = roller.rollDice(amount: amount, keep: keep, bonus: bonus, keepHigh: keepHigh, explodesOn: explodesOn, rerollOnOne: rerollOnOne)
         coreDataService.createRoll(result: result)
         rolls = coreDataService.getRolls() ?? []
+        return result
     }
 
     public func delete(roll: Roll) {
