@@ -4,6 +4,7 @@
 //
 //  Created by Tharak on 03/12/20.
 //
+import GameplayKit
 
 public struct LegendOfTheFiveRingsRoller {
 
@@ -67,6 +68,6 @@ public struct LegendOfTheFiveRingsRoller {
 
     func random(rerollOnOne: Bool = false) -> Int {
         let minimumValue = rerollOnOne ? 2 : 1
-        return Int.random(in: minimumValue...LegendOfTheFiveRingsRoller.dieSides)
+        return GKRandomDistribution(lowestValue: minimumValue, highestValue: 10).nextInt()
     }
 }
